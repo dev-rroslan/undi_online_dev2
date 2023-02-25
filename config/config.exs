@@ -53,7 +53,12 @@ config :undi_online, UndiOnline.Mailer, adapter: Swoosh.Adapters.Local
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
-
+config :dart_sass,
+  version: "1.54.5",
+  default: [
+    args: ~w(css/app.scss ../priv/static/assets/app.css.tailwind),
+    cd: Path.expand("../assets", __DIR__)
+  ]
 
 
 

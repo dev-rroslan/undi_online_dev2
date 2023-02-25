@@ -65,7 +65,8 @@ defmodule UndiOnline.MixProject do
       {:oban, "~> 2.13.4"},
       {:phoenix_swoosh, "~> 1.1.0"},
       {:premailex, "~> 0.3.1"},
-      {:saas_kit, "~> 0.4.0"}
+      {:saas_kit, "~> 0.4.0"},
+      {:dart_sass, "~> 0.5.1", runtime: Mix.env() == :dev}
 
     ]
   end
@@ -82,7 +83,12 @@ defmodule UndiOnline.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
+      "assets.deploy": [
+        "esbuild default --minify",
+        "sass default",
+        "tailwind default --minify",
+        "phx.digest"
+      ]
     ]
   end
 end
